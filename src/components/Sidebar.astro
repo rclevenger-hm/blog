@@ -1,0 +1,42 @@
+---
+const base = import.meta.env.BASE_URL;
+const tags = ['SRE','Kubernetes','AWS','Terraform','Reliability','Career','Automation','DevOps','Observability','Engineering','Systems','Linux','Cloud'];
+---
+<aside class="sidebar">
+  <section class="sidebar-section">
+    <h2>Popular Tags</h2>
+    <div class="tag-cloud">
+      {tags.map(tag => <span class="tag">{tag}</span>)}
+    </div>
+  </section>
+
+  <section class="sidebar-section">
+    <h2>About</h2>
+    <div class="profile">
+      <img src="https://avatars.githubusercontent.com/u/70983614?v=4" alt="Roger Clevenger" loading="lazy" />
+      <div>
+        <p>I’m Roger Clevenger, an SRE and infrastructure engineer. I write about building reliable systems, practical automation, engineering work, and the systems around the systems.</p>
+        <a class="small-button" href={`${base}about/`}>More about me →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sidebar-section">
+    <h2>Featured Projects</h2>
+    <div class="project-mini">
+      <strong>Threatline</strong>
+      <p>Operations and threat-intelligence tooling built as a private-source product.</p>
+      <div class="badges"><span class="badge">Product</span><span class="badge">Operations</span><span class="badge private">Private source</span></div>
+    </div>
+    <div class="project-mini">
+      <a href="https://github.com/rclevenger-hm/oci-ephemeral-resource-janitor" target="_blank" rel="noreferrer"><strong>OCI Ephemeral Resource Janitor ↗</strong></a>
+      <p>Automatically finds and cleans up stale ephemeral OCI resources.</p>
+      <div class="badges"><span class="badge">OCI</span><span class="badge">Automation</span></div>
+    </div>
+    <div class="project-mini">
+      <a href="https://github.com/rclevenger-hm/sentiment_analysis_lambda" target="_blank" rel="noreferrer"><strong>Sentiment Analysis Lambda ↗</strong></a>
+      <p>Serverless sentiment analysis for text data.</p>
+      <div class="badges"><span class="badge">AWS</span><span class="badge">Lambda</span></div>
+    </div>
+  </section>
+</aside>

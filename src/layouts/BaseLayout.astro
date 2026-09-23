@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Roger Clevenger — SRE, Infrastructure & Writing',
+  description = 'Writing about reliability, systems, automation, engineering, and building a sustainable technical life.'
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const path = Astro.url.pathname;
+const nav = [
+  ['Home', base],
+  ['Writing', `${base}writing/`],
+  ['Engineering', `${base}engineering/`],
+  ['Career', `${base}career/`],
+  ['Projects', `${base}projects/`],
+  ['About', `${base}about/`]
+];
+
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="Roger Clevenger — Writing" href={`${base}rss.xml`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <title>{title}</title>
+    <script is:inline>
+      const saved = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && systemDark)) document.documentElement.dataset.theme = 'dark';
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href={base}>
+          <strong>Roger Clevenger</strong>
+          <span>SRE · Infrastructure · Writing</span>
+        </a>
+        <nav class="nav" aria-label="Main navigation">
+          {nav.map(([label, href]) => {
+            const active = href === base ? path === base : path.startsWith(href);
+            return <a class:list={{active}} href={href}>{label}</a>;
+          })}
+        </nav>
+        <div class="header-actions">
+          <button class="icon-button" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+        </div>
+      </div>
+    </header>
+    <slot />
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div>
+          <strong>Roger Clevenger</strong><br />
+          SRE · Infrastructure · Writing
+        </div>
+        <div class="footer-links">
+          <a href={`${base}rss.xml`}>RSS</a>
+          <a href="https://github.com/rclevenger-hm" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/roger-clevenger-b872b42/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+        <div>© {new Date().getFullYear()} Roger Clevenger.</div>
+      </div>
+    </footer>
+    <script is:inline>
+      document.getElementById('theme-toggle')?.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem('theme', next);
+      });
+    </script>
+  </body>
+</html>
