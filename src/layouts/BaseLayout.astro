@@ -40,9 +40,10 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.u
     <meta property="og:url" content={canonical} />
     <title>{title}</title>
     <script is:inline>
-      const saved = localStorage.getItem('theme');
-      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (saved === 'dark' || (!saved && systemDark)) document.documentElement.dataset.theme = 'dark';
+      const savedTheme = localStorage.getItem('theme');
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme =
+        savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : systemTheme;
     </script>
   </head>
   <body>
@@ -79,6 +80,19 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.u
       </div>
     </footer>
     <script is:inline>
+      const themeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const syncWithSystemTheme = (event) => {
+        if (localStorage.getItem('theme')) return;
+        document.documentElement.dataset.theme = event.matches ? 'dark' : 'light';
+      };
+
+      if (themeQuery.addEventListener) {
+        themeQuery.addEventListener('change', syncWithSystemTheme);
+      } else {
+        themeQuery.addListener(syncWithSystemTheme);
+      }
+
       document.getElementById('theme-toggle')?.addEventListener('click', () => {
         const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         document.documentElement.dataset.theme = next;
