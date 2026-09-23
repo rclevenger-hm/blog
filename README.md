@@ -36,14 +36,6 @@ Push to `main` and GitHub Actions will build and deploy the site.
 
 ## Analytics
 
-The site supports Cloudflare Web Analytics without cookies or a consent banner.
+Cloudflare Web Analytics is enabled site-wide using the public site token supplied by Cloudflare.
 
-1. In Cloudflare Web Analytics, add the hostname `rclevenger-hm.github.io`.
-2. Copy the site token from the generated JavaScript snippet.
-3. In this repository, open **Settings → Secrets and variables → Actions → Variables**.
-4. Create a repository variable named `CLOUDFLARE_WEB_ANALYTICS_TOKEN` containing the Cloudflare site token.
-5. Re-run the Pages workflow or push a commit to `main`.
-
-The token is injected at build time as `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN`. If the variable is absent, no analytics script is emitted.
-
-Cloudflare Web Analytics provides visits/pageviews, referral sources, country, device type, browser/OS, and Core Web Vitals.
+The integration is cookie-free and provides visits/pageviews, referral sources, country, device type, browser/OS, and Core Web Vitals.
