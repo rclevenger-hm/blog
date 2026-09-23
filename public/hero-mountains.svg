@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#667989"/>
+      <stop offset=".55" stop-color="#9aa7a5"/>
+      <stop offset="1" stop-color="#d2ad82"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#07131d" stop-opacity=".94"/>
+      <stop offset=".58" stop-color="#07131d" stop-opacity=".48"/>
+      <stop offset="1" stop-color="#07131d" stop-opacity=".18"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="500" fill="url(#sky)"/>
+  <path d="M0 302 142 218 255 267 390 139 518 273 654 175 816 290 934 208 1060 262 1200 184V500H0Z" fill="#53656c"/>
+  <path d="M0 350 180 270 310 330 455 240 600 350 760 260 930 355 1080 285 1200 330V500H0Z" fill="#33474e"/>
+  <path d="M0 408 140 332 290 400 440 315 610 410 780 330 950 420 1090 350 1200 395V500H0Z" fill="#172a31"/>
+  <path d="M0 0h1200v500H0z" fill="url(#fade)"/>
+  <g fill="#0c1d22" opacity=".9">
+    <path d="M1010 500l20-105 18 105zm48 0 17-88 16 88zm42 0 23-125 23 125zm-150 0 18-86 17 86z"/>
+  </g>
+</svg>

@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Projects — Roger Clevenger" description="Selected infrastructure, automation and software projects by Roger Clevenger.">
+  <main class="shell content-page">
+    <div class="eyebrow">Builds</div>
+    <h1 class="page-title">Projects</h1>
+    <p class="page-lede">Tools I build because an operational problem is annoying enough that it should stop being a recurring problem.</p>
+
+    <div class="project-grid">
+      <section class="project-card">
+        <div class="kicker">Private-source product</div>
+        <h2>Threatline</h2>
+        <p>Operations and threat-intelligence tooling designed as a product rather than an open-source repository. The implementation remains private so the product is not simply clone-and-run software.</p>
+        <div class="badges"><span class="badge">Operations</span><span class="badge">Product</span><span class="badge private">Private source</span></div>
+      </section>
+
+      <section class="project-card">
+        <div class="kicker">OCI · Automation</div>
+        <h2>OCI Ephemeral Resource Janitor</h2>
+        <p>Automation for identifying and cleaning up stale ephemeral resources in Oracle Cloud Infrastructure.</p>
+        <a class="project-link" href="https://github.com/rclevenger-hm/oci-ephemeral-resource-janitor" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+      </section>
+
+      <section class="project-card">
+        <div class="kicker">AWS · Serverless</div>
+        <h2>Sentiment Analysis Lambda</h2>
+        <p>A serverless sentiment-analysis project using AWS Lambda to process text without maintaining application servers.</p>
+        <a class="project-link" href="https://github.com/rclevenger-hm/sentiment_analysis_lambda" target="_blank" rel="noreferrer">View on GitHub ↗</a>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

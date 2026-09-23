@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import PostCard from '../components/PostCard.astro';
+
+const base = import.meta.env.BASE_URL;
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const featured = posts.find(post => post.data.featured) ?? posts[0];
+const latest = posts.filter(post => post.id !== featured?.id).slice(0, 6);
+const featuredDate = featured?.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+---
+<BaseLayout>
+  <div class="shell page-grid">
+    <main class="main-column">
+      <section class="hero">
+        <div class="eyebrow">Systems for a quieter tomorrow</div>
+        <h1>Writing about reliability, systems, automation, and rebuilding a technical life.</h1>
+        <p>I’m Roger Clevenger, an SRE and infrastructure engineer. I write about real-world systems, practical automation, career transitions, and what it means to build technology that stays useful.</p>
+        <a class="primary-button" href={featured ? `${base}posts/${featured.id}/` : `${base}writing/`}>Read the latest →</a>
+      </section>
+
+      {featured && (
+        <>
+          <div class="section-head"><h2>Featured Article</h2></div>
+          <a class="featured-card" href={`${base}posts/${featured.id}/`}>
+            <div class="featured-art" aria-hidden="true"></div>
+            <div class="featured-copy">
+              <div class="kicker">{featured.data.tags.slice(0,2).join(' · ')}</div>
+              <h3>{featured.data.title}</h3>
+              <p>{featured.data.description}</p>
+              <div class="meta">{featuredDate}{featured.data.readTime ? ` · ${featured.data.readTime}` : ''}</div>
+            </div>
+          </a>
+        </>
+      )}
+
+      <div class="section-head">
+        <h2>Latest Writing</h2>
+        <a href={`${base}writing/`}>View all posts →</a>
+      </div>
+      <div class="card-grid">
+        {latest.map(post => <PostCard post={post} />)}
+      </div>
+    </main>
+    <Sidebar />
+  </div>
+</BaseLayout>
