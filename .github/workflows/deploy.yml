@@ -50,6 +50,9 @@ jobs:
           cp -R dist/. "$GITHUB_WORKSPACE/dist/games/space-shooter/"
           cp "$GITHUB_WORKSPACE/public/games/google-devrel-demos-LICENSE.txt" "$GITHUB_WORKSPACE/dist/games/space-shooter/LICENSE.txt"
 
+      - name: Validate built local links and assets
+        run: node scripts/check-built-links.mjs
+
       - name: Configure Pages
         if: github.event_name == 'push'
         uses: actions/configure-pages@v5
