@@ -16,6 +16,37 @@ The game is the visible result.
 
 The more useful lesson is everything surrounding it.
 
+
+## Play a Google Antigravity Arcade demo
+
+Before getting into the architecture, it helps to experience the kind of result the workflow is designed to produce. This embedded **Space Shooter** is built from Google’s official Antigravity Arcade supporting source and pinned to the same upstream revision each time this site deploys.
+
+<div class="game-player">
+  <div class="game-player-bar">
+    <div>
+      <strong>Space Shooter</strong>
+      <span>Google Antigravity Arcade demo</span>
+    </div>
+    <a href="/blog/games/space-shooter/" target="_blank" rel="noreferrer">Open full screen ↗</a>
+  </div>
+  <iframe
+    src="/blog/games/space-shooter/"
+    title="Playable Google Antigravity Arcade Space Shooter demo"
+    loading="lazy"
+    sandbox="allow-scripts allow-same-origin"
+    allow="gamepad; fullscreen"
+    allowfullscreen>
+  </iframe>
+  <div class="game-player-controls">
+    <span><strong>Move:</strong> Arrow keys</span>
+    <span><strong>Action / fire:</strong> X</span>
+    <span><strong>Alt action:</strong> Z</span>
+  </div>
+  <p class="game-player-note">The game runs entirely inside a sandboxed frame. Source: GoogleCloudPlatform/devrel-demos, Apache 2.0. <a href="/blog/games/google-devrel-demos-LICENSE.txt">License</a>.</p>
+</div>
+
+The point of embedding it here is not to claim the starter game as my own. It is to make the training outcome tangible: the same skills, input conventions, CRT styling, Phaser runtime, and build workflow discussed in the course produce something you can actually interact with.
+
 The training demonstrates a style of agent-assisted development where the AI is not treated as a magic prompt box. Instead, it is given reusable skills, constraints, validation steps, deployment workflows, and clearly defined interfaces.
 
 For someone coming from SRE, DevOps, platform engineering, or cloud infrastructure, that is where the exercise becomes genuinely interesting.

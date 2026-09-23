@@ -34,6 +34,22 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Build playable Antigravity Arcade demo
+        env:
+          GOOGLE_DEVREL_COMMIT: 68476ce6028020bac0fbbe60d9626de6a1c7e60f
+        run: |
+          git clone --filter=blob:none --no-checkout https://github.com/GoogleCloudPlatform/devrel-demos.git /tmp/devrel-demos
+          cd /tmp/devrel-demos
+          git sparse-checkout init --cone
+          git sparse-checkout set other/antigravity-arcade/games/space-shooter
+          git checkout "$GOOGLE_DEVREL_COMMIT"
+          cd other/antigravity-arcade/games/space-shooter
+          npm install --no-audit --no-fund
+          npm run build
+          mkdir -p "$GITHUB_WORKSPACE/dist/games/space-shooter"
+          cp -R dist/. "$GITHUB_WORKSPACE/dist/games/space-shooter/"
+          cp "$GITHUB_WORKSPACE/public/games/google-devrel-demos-LICENSE.txt" "$GITHUB_WORKSPACE/dist/games/space-shooter/LICENSE.txt"
+
       - name: Configure Pages
         if: github.event_name == 'push'
         uses: actions/configure-pages@v5
