@@ -25,10 +25,16 @@ function cleanReference(value) {
 }
 
 function resolveCandidate(htmlFile, reference) {
+  if (reference === base || reference === `${base}/`) return join(root, 'index.html');
+
   let path = reference;
-  if (path === base || path === `${base}/`) return join(root, 'index.html');
-  if (path.startsWith(`${base}/`)) path = path.slice(base.length + 1);
-  else if (path.startsWith('/')) return null; // intentional site-root link outside this Pages project
+  let origin = dirname(htmlFile);
+  if (path.startsWith(`${base}/`)) {
+    path = path.slice(base.length + 1);
+    origin = root;
+  } else if (path.startsWith('/')) {
+    return null; // intentional site-root link outside this Pages project
+  }
 
   try {
     path = decodeURIComponent(path);
@@ -36,7 +42,7 @@ function resolveCandidate(htmlFile, reference) {
     // Keep the literal path; malformed URLs should fail the existence check below.
   }
 
-  const candidate = resolve(dirname(htmlFile), path);
+  const candidate = resolve(origin, path);
   if (!candidate.startsWith(root)) return null;
   return candidate;
 }
