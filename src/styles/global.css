@@ -329,3 +329,170 @@ button, input { font: inherit; }
   .about-card img { width: 120px; }
   .article { width: min(100% - 28px, 800px); margin-top: 32px; }
 }
+
+/* Resume and consolidated portfolio */
+.resume-page { max-width: 1180px; }
+.resume-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 36px;
+  align-items: start;
+  padding: 14px 0 38px;
+  border-bottom: 1px solid var(--line);
+}
+.resume-actions, .about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 20px;
+}
+.resume-summary-card {
+  display: grid;
+  gap: 8px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+.resume-summary-card strong {
+  font: 700 1.05rem var(--serif);
+  margin-bottom: 3px;
+}
+.resume-summary-card span {
+  color: var(--muted);
+  font-size: .86rem;
+  padding-top: 7px;
+  border-top: 1px solid var(--line);
+}
+.resume-section {
+  padding: 38px 0;
+  border-bottom: 1px solid var(--line);
+}
+.resume-section-heading {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+.resume-section-heading > span {
+  color: var(--muted);
+  font: 700 .8rem var(--sans);
+  padding-top: 4px;
+}
+.resume-section-heading h2 {
+  font: 700 1.65rem var(--serif);
+  margin: 3px 0 0;
+}
+.resume-intro {
+  max-width: 850px;
+  color: var(--muted);
+  margin: -4px 0 22px 58px;
+}
+.capability-grid, .evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-left: 58px;
+}
+.capability-card, .evidence-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 20px;
+}
+.capability-card h3, .evidence-card h3 {
+  font: 700 1.08rem var(--serif);
+  margin: 0 0 8px;
+}
+.capability-card p, .evidence-card p {
+  color: var(--muted);
+  margin: 0;
+  font-size: .88rem;
+}
+.evidence-card a {
+  display: inline-block;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: .8rem;
+  margin-top: 14px;
+}
+.experience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 58px;
+}
+.experience-list li {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 24px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+.experience-list li:first-child { border-top: 0; padding-top: 4px; }
+.experience-meta { display: grid; align-content: start; gap: 4px; }
+.experience-meta strong { font-family: var(--serif); }
+.experience-meta span { color: var(--muted); font-size: .77rem; }
+.experience-body h3 {
+  font: 700 1.2rem var(--serif);
+  margin: 0 0 7px;
+}
+.experience-body p { color: var(--muted); margin: 0 0 8px; }
+.principle-row {
+  margin-left: 58px;
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.principle-row span {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 9px 13px;
+  font-size: .82rem;
+  font-weight: 650;
+}
+.scope-note {
+  margin: 28px 0 0 58px;
+  padding: 18px 20px;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--muted);
+  font-size: .86rem;
+}
+.scope-note strong { color: var(--text); }
+
+.project-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 28px;
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+}
+.project-feature h2 {
+  font: 700 1.75rem var(--serif);
+  margin: 6px 0 10px;
+}
+.project-feature p { color: var(--muted); }
+.project-feature-note {
+  border-left: 1px solid var(--line);
+  padding-left: 24px;
+}
+.project-feature-note strong { font-family: var(--serif); }
+.project-badges { margin-bottom: 15px; }
+
+@media (max-width: 1050px) {
+  .nav { gap: 14px; font-size: .86rem; }
+  .resume-hero, .project-feature { grid-template-columns: 1fr; }
+  .project-feature-note { border-left: 0; border-top: 1px solid var(--line); padding: 20px 0 0; }
+}
+@media (max-width: 760px) {
+  .capability-grid, .evidence-grid, .experience-list, .principle-row, .resume-intro, .scope-note { margin-left: 0; }
+  .capability-grid, .evidence-grid { grid-template-columns: 1fr; }
+  .experience-list li { grid-template-columns: 1fr; gap: 8px; }
+}
