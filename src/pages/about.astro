@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="About — Roger Clevenger" description="About Roger Clevenger, a Site Reliability and infrastructure engineer.">
   <main class="shell content-page">
@@ -9,10 +10,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <img src="https://avatars.githubusercontent.com/u/70983614?v=4" alt="Roger Clevenger" />
       <div>
         <h2>Roger Clevenger</h2>
-        <p>I’m a Site Reliability and infrastructure engineer focused on reliability, cloud infrastructure, automation, observability, and the practical work of keeping complex systems understandable.</p>
+        <p>I’m a Principal Site Reliability and infrastructure engineer focused on reliability, cloud infrastructure, automation, observability, and the practical work of keeping complex systems understandable.</p>
         <p>This site is where I write down the lessons that are hard to fit into a ticket: why simple systems often outperform clever ones, what makes operations sustainable, how automation changes engineering work, and what a long technical career looks like from the inside.</p>
         <p>I also build tools and side projects when I find a recurring problem that software can make less repetitive.</p>
         <div class="badges"><span class="badge">SRE</span><span class="badge">Infrastructure</span><span class="badge">Automation</span><span class="badge">Observability</span></div>
+        <div class="about-actions">
+          <a class="small-button" href={`${base}resume/`}>Résumé →</a>
+          <a class="small-button" href={`${base}projects/`}>Projects →</a>
+        </div>
       </div>
     </div>
   </main>

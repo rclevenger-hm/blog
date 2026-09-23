@@ -1,0 +1,61 @@
+{
+  "name": "Roger Clevenger",
+  "title": "Principal Site Reliability Engineer",
+  "site": "https://rclevenger-hm.github.io/blog/",
+  "resume": "https://rclevenger-hm.github.io/blog/resume/",
+  "github": "https://github.com/rclevenger-hm",
+  "linkedin": "https://www.linkedin.com/in/roger-clevenger-b872b42/",
+  "summary": "Principal-level SRE and DevOps engineer focused on reliable cloud infrastructure, observability, incident response, infrastructure as code, CI/CD, distributed systems, and operational automation.",
+  "capabilities": {
+    "cloudAndInfrastructure": [
+      "AWS",
+      "Oracle Cloud Infrastructure",
+      "Terraform",
+      "networking",
+      "compute",
+      "storage",
+      "identity"
+    ],
+    "reliabilityEngineering": [
+      "incident response",
+      "failure analysis",
+      "recovery",
+      "SLO thinking",
+      "capacity planning",
+      "runbooks"
+    ],
+    "deliveryAndAutomation": [
+      "GitHub Actions",
+      "Jenkins",
+      "Docker",
+      "Packer",
+      "Ansible",
+      "Python",
+      "release engineering"
+    ],
+    "observability": [
+      "Datadog",
+      "Grafana",
+      "CloudWatch",
+      "metrics",
+      "logs",
+      "alerting",
+      "operational dashboards"
+    ],
+    "distributedSystems": [
+      "Kafka",
+      "Hadoop",
+      "Databricks",
+      "Snowflake",
+      "OpenSearch"
+    ]
+  },
+  "publicProjects": [
+    "https://github.com/rclevenger-hm/oci-ephemeral-resource-janitor",
+    "https://github.com/rclevenger-hm/driver_license_authenticity_lambda",
+    "https://github.com/rclevenger-hm/kafka-oci-deployment",
+    "https://github.com/rclevenger-hm/oci-hadoop-job-automation",
+    "https://github.com/rclevenger-hm/sports-gamecast",
+    "https://github.com/rclevenger-hm/sentiment_analysis_lambda"
+  ]
+}

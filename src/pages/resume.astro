@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+
+const capabilities = [
+  ['Cloud & infrastructure', 'AWS · OCI · Terraform · networking · compute · storage · identity'],
+  ['Reliability engineering', 'Incident response · failure analysis · recovery · SLO thinking · capacity · runbooks'],
+  ['Delivery & automation', 'GitHub Actions · Jenkins · Docker · Packer · Ansible · Python · release engineering'],
+  ['Observability', 'Datadog · Grafana · CloudWatch · metrics · logs · alerting · operational dashboards'],
+  ['Distributed systems', 'Kafka · Hadoop · Databricks · Snowflake · OpenSearch'],
+  ['Engineering systems', 'JavaScript · TypeScript · APIs · serverless systems · operational tooling']
+];
+
+const experience = [
+  {
+    company: 'Oracle',
+    era: 'Most recent',
+    role: 'Principal Site Reliability Engineer',
+    summary: 'Reliability and operations for cloud and distributed-data infrastructure, with emphasis on observable systems, safe infrastructure change, incident response, automation, and ownership transfer.',
+    signals: 'OCI · AWS · Terraform · Kafka · Hadoop · Observability'
+  },
+  {
+    company: 'Happy Money',
+    era: 'Prior',
+    role: 'DevOps Engineer',
+    summary: 'Cloud infrastructure and delivery work focused on repeatable environments, deployment automation, operational visibility, and reducing friction between application engineering and production operations.',
+    signals: 'AWS · CI/CD · Terraform · Docker · Datadog'
+  },
+  {
+    company: 'NextVR',
+    era: 'Prior',
+    role: 'DevOps Engineer',
+    summary: 'Infrastructure and release engineering in a media technology environment where dependable delivery, automation, and production support were part of the product experience.',
+    signals: 'AWS · Jenkins · Packer · Ansible · Release engineering'
+  },
+  {
+    company: 'Local Corporation',
+    era: 'Foundation',
+    role: 'Software Quality Engineer',
+    summary: 'Built the systems-debugging foundation behind later SRE work: reproduce failure, follow the full request path, read logs rather than guess, and automate repeatable checks.',
+    signals: 'Test automation · Linux · JavaScript · Logs · Systems debugging'
+  }
+];
+
+const evidence = [
+  {
+    label: 'Safe cloud automation',
+    title: 'OCI Ephemeral Resource Janitor',
+    body: 'Explicit lifecycle ownership, dry-run defaults, protection policy, fail-closed parsing, action caps, and a separate termination interlock before destructive actions are permitted.',
+    href: 'https://github.com/rclevenger-hm/oci-ephemeral-resource-janitor'
+  },
+  {
+    label: 'Distributed systems',
+    title: 'Kafka on OCI',
+    body: 'KRaft consensus, private networking, replication semantics, capacity and recovery headroom, observability, and failure-domain reasoning treated as one reliability envelope.',
+    href: 'https://github.com/rclevenger-hm/kafka-oci-deployment'
+  },
+  {
+    label: 'Async recovery',
+    title: 'Identity Document Async Pipeline',
+    body: 'API Gateway, Lambda, S3, SQS/DLQ, persisted job state, throttling, and Terraform make asynchronous work and recovery paths explicit operating concerns.',
+    href: 'https://github.com/rclevenger-hm/driver_license_authenticity_lambda'
+  },
+  {
+    label: 'Browser reliability',
+    title: 'Sports Gamecast',
+    body: 'A dependency-light browser application using defensive parsing, state-aware refresh behavior, CI/CD, and deterministic browser testing to contain upstream uncertainty.',
+    href: 'https://github.com/rclevenger-hm/sports-gamecast'
+  }
+];
+---
+<BaseLayout title="Résumé — Roger Clevenger" description="Principal Site Reliability Engineer résumé, capabilities, selected experience, and public engineering evidence for Roger Clevenger.">
+  <main class="shell content-page resume-page">
+    <section class="resume-hero">
+      <div>
+        <div class="eyebrow">Principal Site Reliability Engineer</div>
+        <h1 class="page-title">Roger Clevenger</h1>
+        <p class="page-lede">Principal-level SRE and DevOps engineer focused on reliable cloud infrastructure, observable systems, safe infrastructure change, incident response, distributed data platforms, and operational automation.</p>
+        <div class="resume-actions">
+          <a class="small-button" href="https://rclevenger-hm.github.io/portfolio/resume/Roger-Clevenger-Principal-SRE-Resume.pdf" target="_blank" rel="noreferrer">Download PDF ↗</a>
+          <a class="small-button" href="https://github.com/rclevenger-hm" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a class="small-button" href={`${base}projects/`}>Project evidence →</a>
+        </div>
+      </div>
+      <aside class="resume-summary-card">
+        <strong>Operating profile</strong>
+        <span>Cloud infrastructure</span>
+        <span>Reliability engineering</span>
+        <span>Distributed systems</span>
+        <span>Observability</span>
+        <span>Delivery automation</span>
+        <span>Incident response</span>
+      </aside>
+    </section>
+
+    <section class="resume-section">
+      <div class="resume-section-heading">
+        <span>01</span>
+        <div>
+          <div class="kicker">Capabilities</div>
+          <h2>What I work on</h2>
+        </div>
+      </div>
+      <div class="capability-grid">
+        {capabilities.map(([title, body]) => (
+          <article class="capability-card">
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="resume-section">
+      <div class="resume-section-heading">
+        <span>02</span>
+        <div>
+          <div class="kicker">Experience</div>
+          <h2>Selected professional history</h2>
+        </div>
+      </div>
+      <ol class="experience-list">
+        {experience.map(item => (
+          <li>
+            <div class="experience-meta">
+              <strong>{item.company}</strong>
+              <span>{item.era}</span>
+            </div>
+            <div class="experience-body">
+              <h3>{item.role}</h3>
+              <p>{item.summary}</p>
+              <div class="meta">{item.signals}</div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="resume-section">
+      <div class="resume-section-heading">
+        <span>03</span>
+        <div>
+          <div class="kicker">Inspectable evidence</div>
+          <h2>Claims backed by public systems</h2>
+        </div>
+      </div>
+      <p class="resume-intro">A résumé can become a wall of technology names. I prefer to pair capabilities with public engineering work where the decisions, controls, failure assumptions, and tradeoffs can actually be inspected.</p>
+      <div class="evidence-grid">
+        {evidence.map(item => (
+          <article class="evidence-card">
+            <div class="kicker">{item.label}</div>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+            <a href={item.href} target="_blank" rel="noreferrer">Inspect repository ↗</a>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="resume-section">
+      <div class="resume-section-heading">
+        <span>04</span>
+        <div>
+          <div class="kicker">Principles</div>
+          <h2>How I tend to approach systems</h2>
+        </div>
+      </div>
+      <div class="principle-row">
+        <span>Make failure legible.</span>
+        <span>Bound the cost of being wrong.</span>
+        <span>Design recovery with the system.</span>
+        <span>Design for ownership transfer.</span>
+      </div>
+    </section>
+
+    <aside class="scope-note">
+      <strong>Public résumé boundary.</strong>
+      Employer-proprietary systems, customer details, internal metrics, confidential architecture, and private repository contents are intentionally excluded. Public projects are linked where claims can be inspected directly.
+    </aside>
+  </main>
+</BaseLayout>

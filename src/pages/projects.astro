@@ -1,33 +1,81 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const publicProjects = [
+  {
+    kicker: 'OCI · Safe automation',
+    name: 'OCI Ephemeral Resource Janitor',
+    description: 'Lifecycle automation designed around blast-radius control: explicit opt-in ownership, dry-run defaults, fail-closed parsing, protection policy, action caps, and a separate termination interlock.',
+    href: 'https://github.com/rclevenger-hm/oci-ephemeral-resource-janitor',
+    badges: ['OCI', 'Terraform', 'Automation', 'Safety']
+  },
+  {
+    kicker: 'AWS · Async systems',
+    name: 'Identity Document Async Pipeline',
+    description: 'An asynchronous AWS pipeline using API Gateway, Lambda, S3, SQS/DLQ, persisted job state, throttling, and Terraform so retries and failure recovery are explicit operating concerns.',
+    href: 'https://github.com/rclevenger-hm/driver_license_authenticity_lambda',
+    badges: ['AWS', 'Lambda', 'SQS', 'Terraform']
+  },
+  {
+    kicker: 'OCI · Distributed systems',
+    name: 'Kafka on OCI',
+    description: 'A Kafka reliability reference that treats consensus, network topology, storage, observability, recovery headroom, and failure domains as one operational system.',
+    href: 'https://github.com/rclevenger-hm/kafka-oci-deployment',
+    badges: ['OCI', 'Kafka', 'KRaft', 'Terraform']
+  },
+  {
+    kicker: 'OCI · Operations',
+    name: 'OCI Hadoop Job Automation',
+    description: 'Remote-job automation that treats timeouts as an observability and retry-safety problem, with bounded execution, host verification, validation, and explicit unknown-outcome handling.',
+    href: 'https://github.com/rclevenger-hm/oci-hadoop-job-automation',
+    badges: ['OCI', 'Hadoop', 'Python', 'Operations']
+  },
+  {
+    kicker: 'Browser · Reliability',
+    name: 'Sports Gamecast',
+    description: 'A static, dependency-light sports application using defensive parsing, state-aware refresh behavior, browser testing, and deployment gates to contain uncertainty in upstream data.',
+    href: 'https://github.com/rclevenger-hm/sports-gamecast',
+    badges: ['JavaScript', 'Playwright', 'PWA', 'CI/CD']
+  },
+  {
+    kicker: 'AWS · Serverless',
+    name: 'Sentiment Analysis Lambda',
+    description: 'A serverless sentiment-analysis project using AWS Lambda to process text without maintaining application servers.',
+    href: 'https://github.com/rclevenger-hm/sentiment_analysis_lambda',
+    badges: ['AWS', 'Lambda', 'NLP']
+  }
+];
 ---
-<BaseLayout title="Projects — Roger Clevenger" description="Selected infrastructure, automation and software projects by Roger Clevenger.">
+<BaseLayout title="Projects — Roger Clevenger" description="Selected infrastructure, reliability, automation and software projects by Roger Clevenger.">
   <main class="shell content-page">
     <div class="eyebrow">Builds</div>
     <h1 class="page-title">Projects</h1>
-    <p class="page-lede">Tools I build because an operational problem is annoying enough that it should stop being a recurring problem.</p>
+    <p class="page-lede">Public engineering evidence, experiments, and products. I am most interested in projects where the implementation says something about how the system behaves when things go wrong.</p>
 
-    <div class="project-grid">
-      <section class="project-card">
+    <section class="project-feature">
+      <div>
         <div class="kicker">Private-source product</div>
         <h2>Threatline</h2>
         <p>Operations and threat-intelligence tooling designed as a product rather than an open-source repository. The implementation remains private so the product is not simply clone-and-run software.</p>
-        <div class="badges"><span class="badge">Operations</span><span class="badge">Product</span><span class="badge private">Private source</span></div>
-      </section>
+        <div class="badges"><span class="badge">Operations</span><span class="badge">Product</span><span class="badge">Security</span><span class="badge private">Private source</span></div>
+      </div>
+      <div class="project-feature-note">
+        <strong>Why private?</strong>
+        <p>Threatline is intended to become a product. Public discussion can cover the problem, product direction, and architecture choices without publishing the implementation itself.</p>
+      </div>
+    </section>
 
-      <section class="project-card">
-        <div class="kicker">OCI · Automation</div>
-        <h2>OCI Ephemeral Resource Janitor</h2>
-        <p>Automation for identifying and cleaning up stale ephemeral resources in Oracle Cloud Infrastructure.</p>
-        <a class="project-link" href="https://github.com/rclevenger-hm/oci-ephemeral-resource-janitor" target="_blank" rel="noreferrer">View on GitHub ↗</a>
-      </section>
-
-      <section class="project-card">
-        <div class="kicker">AWS · Serverless</div>
-        <h2>Sentiment Analysis Lambda</h2>
-        <p>A serverless sentiment-analysis project using AWS Lambda to process text without maintaining application servers.</p>
-        <a class="project-link" href="https://github.com/rclevenger-hm/sentiment_analysis_lambda" target="_blank" rel="noreferrer">View on GitHub ↗</a>
-      </section>
+    <div class="section-head"><h2>Public engineering work</h2><a href="https://github.com/rclevenger-hm" target="_blank" rel="noreferrer">All repositories ↗</a></div>
+    <div class="project-grid">
+      {publicProjects.map(project => (
+        <section class="project-card">
+          <div class="kicker">{project.kicker}</div>
+          <h2>{project.name}</h2>
+          <p>{project.description}</p>
+          <div class="badges project-badges">{project.badges.map(badge => <span class="badge">{badge}</span>)}</div>
+          <a class="project-link" href={project.href} target="_blank" rel="noreferrer">View on GitHub ↗</a>
+        </section>
+      ))}
     </div>
   </main>
 </BaseLayout>
