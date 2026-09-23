@@ -144,7 +144,7 @@ button, input { font: inherit; }
   min-height: 330px;
   border-radius: 7px;
   overflow: hidden;
-  background: #25353c url('/blog/hero-mountains.svg') center/cover no-repeat;
+  background:\n    linear-gradient(90deg, rgba(5, 13, 24, .78) 0%, rgba(5, 13, 24, .46) 52%, rgba(5, 13, 24, .12) 100%),\n    #25353c url('/blog/blog-mountain-hero.webp') center/cover no-repeat;
   color: white;
   padding: 42px;
   display: grid;
