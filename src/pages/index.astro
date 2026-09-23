@@ -1,49 +1,74 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Sidebar from '../components/Sidebar.astro';
-import PostCard from '../components/PostCard.astro';
 
 const base = import.meta.env.BASE_URL;
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const featured = posts.find(post => post.data.featured) ?? posts[0];
-const latest = posts.filter(post => post.id !== featured?.id).slice(0, 6);
-const featuredDate = featured?.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+const preferredOrder = [
+  'google-antigravity-arcade-what-i-learned',
+  'leetcode-for-sre-and-devops-engineers',
+  'the-joy-of-sadservers',
+  'why-infrastructure-should-be-boring',
+  'why-i-built-an-on-call-cockpit',
+  'building-software-for-yourself-again'
+];
+
+const imageById = {
+  'google-antigravity-arcade-what-i-learned': `${base}article-antigravity.svg`,
+  'leetcode-for-sre-and-devops-engineers': `${base}article-leetcode.svg`,
+  'the-joy-of-sadservers': `${base}article-sadservers.svg`,
+  'why-infrastructure-should-be-boring': `${base}article-boring.svg`,
+  'why-i-built-an-on-call-cockpit': `${base}article-cockpit.svg`,
+  'building-software-for-yourself-again': `${base}article-building.svg`
+};
+
+const posts = preferredOrder.map(id => allPosts.find(post => post.id === id)).filter(Boolean);
+const formatDate = (date) => date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const heroTags = ['SRE', 'Infrastructure', 'Automation', 'Cloud', 'AI', 'Career', 'Projects', 'Life'];
 ---
-<BaseLayout>
-  <div class="shell page-grid">
-    <main class="main-column">
-      <section class="hero">
-        <div class="eyebrow">Systems for a quieter tomorrow</div>
-        <h1>Writing about reliability, systems, automation, and rebuilding a technical life.</h1>
-        <p>I’m Roger Clevenger, an SRE and infrastructure engineer. I write about real-world systems, practical automation, career transitions, and what it means to build technology that stays useful.</p>
-        <a class="primary-button" href={featured ? `${base}posts/${featured.id}/` : `${base}writing/`}>Read the latest →</a>
-      </section>
-
-      {featured && (
-        <>
-          <div class="section-head"><h2>Featured Article</h2></div>
-          <a class="featured-card" href={`${base}posts/${featured.id}/`}>
-            <div class="featured-art" aria-hidden="true"></div>
-            <div class="featured-copy">
-              <div class="kicker">{featured.data.tags.slice(0,2).join(' · ')}</div>
-              <h3>{featured.data.title}</h3>
-              <p>{featured.data.description}</p>
-              <div class="meta">{featuredDate}{featured.data.readTime ? ` · ${featured.data.readTime}` : ''}</div>
-            </div>
-          </a>
-        </>
-      )}
-
-      <div class="section-head">
-        <h2>Latest Writing</h2>
-        <a href={`${base}writing/`}>View all posts →</a>
+<BaseLayout
+  title="Roger Clevenger — SRE, Infrastructure & Writing"
+  description="Thoughts, lessons, and experiences from the front lines of reliability engineering, infrastructure, automation, AI, and technical work."
+>
+  <main class="publication-home">
+    <section class="publication-hero">
+      <div class="publication-hero-overlay"></div>
+      <div class="publication-hero-inner">
+        <div class="publication-portrait-wrap">
+          <img class="publication-portrait" src="https://avatars.githubusercontent.com/u/70983614?v=4&size=720" alt="Roger Clevenger" />
+        </div>
+        <div class="publication-intro">
+          <div class="publication-kicker">Writing</div>
+          <h1>Thoughts, lessons, and experiences from the front lines of technology.</h1>
+          <p>I’m Roger Clevenger, a Principal Site Reliability Engineer focused on building reliable, scalable systems and practical automation. This is where I share technical deep dives, career insights, and ideas at the intersection of infrastructure, AI, and real-world engineering.</p>
+          <div class="publication-tag-row">{heroTags.map(tag => <span>{tag}</span>)}</div>
+        </div>
       </div>
-      <div class="card-grid">
-        {latest.map(post => <PostCard post={post} />)}
+    </section>
+
+    <section class="publication-feed">
+      <div class="publication-tabs" aria-label="Writing filters">
+        <a class="active" href={base}>Latest</a>
+        <span>Most Popular</span>
+        <a href={`${base}writing/`}>Categories ↓</a>
       </div>
-    </main>
-    <Sidebar />
-  </div>
+
+      <div class="publication-card-grid">
+        {posts.map(post => (
+          <article class="publication-card">
+            <a class="publication-card-image-link" href={`${base}posts/${post.id}/`}>
+              <img class="publication-card-image" src={imageById[post.id]} alt="" loading="lazy" />
+            </a>
+            <div class="publication-card-meta">{formatDate(post.data.date)}{post.data.readTime ? ` · ${post.data.readTime}` : ''}</div>
+            <div class="publication-card-tags">{post.data.tags.slice(0, 4).map(tag => <span>{tag}</span>)}</div>
+            <h2><a href={`${base}posts/${post.id}/`}>{post.data.title}</a></h2>
+            <p>{post.data.description}</p>
+            <a class="publication-read-more" href={`${base}posts/${post.id}/`}>Read more →</a>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
 </BaseLayout>
