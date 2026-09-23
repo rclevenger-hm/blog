@@ -496,3 +496,84 @@ button, input { font: inherit; }
   .capability-grid, .evidence-grid { grid-template-columns: 1fr; }
   .experience-list li { grid-template-columns: 1fr; gap: 8px; }
 }
+
+
+/* Embedded Antigravity Arcade player */
+.game-player {
+  margin: 26px 0 34px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #090d16;
+  box-shadow: var(--shadow);
+  font-family: var(--sans);
+}
+.game-player-bar {
+  min-height: 62px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 16px;
+  background: #111827;
+  color: #f8fafc;
+  border-bottom: 1px solid #293449;
+}
+.game-player-bar div {
+  display: grid;
+  gap: 1px;
+}
+.game-player-bar strong {
+  font-size: .9rem;
+}
+.game-player-bar span {
+  color: #9aa7bb;
+  font-size: .72rem;
+}
+.prose .game-player-bar a {
+  color: #93c5fd;
+  text-decoration: none;
+  font-size: .75rem;
+  white-space: nowrap;
+}
+.game-player iframe {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: block;
+  border: 0;
+  background: #000;
+}
+.game-player-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 12px 16px 4px;
+  background: #111827;
+  color: #cbd5e1;
+  font-size: .73rem;
+}
+.game-player-controls span {
+  padding: 5px 8px;
+  border: 1px solid #334155;
+  border-radius: 999px;
+}
+.prose .game-player-note {
+  margin: 0;
+  padding: 10px 16px 14px;
+  background: #111827;
+  color: #94a3b8;
+  font: .72rem/1.45 var(--sans);
+}
+.prose .game-player-note a {
+  color: #93c5fd;
+}
+@media (max-width: 760px) {
+  .game-player {
+    margin-left: calc((100vw - 100%) / -2 + 14px);
+    margin-right: calc((100vw - 100%) / -2 + 14px);
+    border-radius: 7px;
+  }
+  .game-player-bar {
+    align-items: flex-start;
+  }
+}
