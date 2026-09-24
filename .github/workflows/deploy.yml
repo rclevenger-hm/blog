@@ -53,6 +53,9 @@ jobs:
       - name: Validate built local links and assets
         run: node scripts/check-built-links.mjs
 
+      - name: Validate built page metadata
+        run: node scripts/check-built-metadata.mjs
+
       - name: Configure Pages
         if: github.event_name == 'push'
         uses: actions/configure-pages@v5
