@@ -4,17 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL;
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-
-const preferredOrder = [
-  'the-tech-job-search-changed',
-  'google-antigravity-arcade-what-i-learned',
-  'leetcode-for-sre-and-devops-engineers',
-  'the-joy-of-sadservers',
-  'why-infrastructure-should-be-boring',
-  'why-i-built-an-on-call-cockpit',
-  'building-software-for-yourself-again'
-];
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+    || a.data.title.localeCompare(b.data.title));
 
 const imageById = {
   'the-tech-job-search-changed': `${base}article-job-search.svg`,
@@ -26,7 +17,7 @@ const imageById = {
   'building-software-for-yourself-again': `${base}article-building.svg`
 };
 
-const posts = preferredOrder.map(id => allPosts.find(post => post.id === id)).filter(Boolean);
+const posts = allPosts;
 const formatDate = (date) => date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 const heroTags = ['SRE', 'Infrastructure', 'Automation', 'Cloud', 'AI', 'Career', 'Projects', 'Life'];
 ---
@@ -61,7 +52,7 @@ const heroTags = ['SRE', 'Infrastructure', 'Automation', 'Cloud', 'AI', 'Career'
         {posts.map(post => (
           <article class="publication-card">
             <a class="publication-card-image-link" href={`${base}posts/${post.id}/`}>
-              <img class="publication-card-image" src={imageById[post.id]} alt="" loading="lazy" />
+              <img class="publication-card-image" src={imageById[post.id] ?? `${base}article-building.svg`} alt="" loading="lazy" />
             </a>
             <div class="publication-card-meta">{formatDate(post.data.date)}{post.data.readTime ? ` · ${post.data.readTime}` : ''}</div>
             <div class="publication-card-tags">{post.data.tags.slice(0, 4).map(tag => <span>{tag}</span>)}</div>
