@@ -7,6 +7,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const preferredOrder = [
+  'the-tech-job-search-changed',
   'google-antigravity-arcade-what-i-learned',
   'leetcode-for-sre-and-devops-engineers',
   'the-joy-of-sadservers',
@@ -16,6 +17,7 @@ const preferredOrder = [
 ];
 
 const imageById = {
+  'the-tech-job-search-changed': `${base}article-job-search.svg`,
   'google-antigravity-arcade-what-i-learned': `${base}article-antigravity.svg`,
   'leetcode-for-sre-and-devops-engineers': `${base}article-leetcode.svg`,
   'the-joy-of-sadservers': `${base}article-sadservers.svg`,
