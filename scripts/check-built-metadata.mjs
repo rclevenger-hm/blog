@@ -23,6 +23,12 @@ function metaContent(html, attribute, value) {
   return tag ? attr(tag, 'content') : '';
 }
 
+function expectedCanonical(relativePath) {
+  if (relativePath === 'index.html') return sitePrefix;
+  if (relativePath.endsWith('/index.html')) return new URL(relativePath.slice(0, -10), sitePrefix).href;
+  return new URL(relativePath, sitePrefix).href;
+}
+
 function linkHref(html, rel) {
   const tags = html.match(/<link\b[^>]*>/gi) || [];
   const tag = tags.find((candidate) => attr(candidate, 'rel').toLowerCase().split(/\s+/).includes(rel));
@@ -67,6 +73,7 @@ for (const file of pages) {
   }
 
   if (canonical && !canonical.startsWith(sitePrefix)) failures.push(`${relative}: canonical is outside ${sitePrefix}`);
+  if (canonical && canonical !== expectedCanonical(relative)) failures.push(`${relative}: canonical does not match built route (${expectedCanonical(relative)})`);
   if (ogUrl && ogUrl !== canonical) failures.push(`${relative}: og:url does not match canonical`);
   if (canonical) {
     const previous = canonicals.get(canonical);
