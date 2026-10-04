@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#11131a"/><stop offset="1" stop-color="#24172c"/></linearGradient>
+  <linearGradient id="warp" x1="0" x2="1"><stop stop-color="#ff7a59"/><stop offset=".52" stop-color="#d954ff"/><stop offset="1" stop-color="#6e8bff"/></linearGradient>
+</defs>
+<rect width="900" height="520" fill="url(#bg)"/>
+<g opacity=".18" stroke="#d8a8ff"><path d="M0 95h900"/><path d="M0 180h900"/><path d="M0 265h900"/><path d="M0 350h900"/><path d="M0 435h900"/></g>
+<g transform="translate(70 70)">
+  <rect width="455" height="330" rx="15" fill="#0c0f15" stroke="#3b3245" stroke-width="2"/>
+  <rect width="455" height="42" rx="15" fill="#181821"/>
+  <circle cx="24" cy="21" r="6" fill="#ff6b67"/><circle cx="46" cy="21" r="6" fill="#f5c451"/><circle cx="68" cy="21" r="6" fill="#55d88a"/>
+  <g font-family="monospace" font-size="17">
+    <text x="28" y="86" fill="#8fd8ff">$ sh lcm_mars.sh space_missions.log</text>
+    <text x="28" y="120" fill="#e7eef7">XRT-421-ZQP</text>
+    <text x="28" y="172" fill="#8fd8ff">$ python3 scripts/benchmark.py ...</text>
+    <text x="28" y="206" fill="#c7d2df">Median ........ 8.34 ms</text>
+    <text x="28" y="238" fill="#c7d2df">P95 .......... 10.04 ms</text>
+    <text x="28" y="270" fill="#65e6a4">PASS: median &lt; 20 ms</text>
+    <text x="28" y="314" fill="#a6b0bd">...then I kept going.</text>
+  </g>
+</g>
+<g transform="translate(575 88)">
+  <path d="M82 0l31 55 61-10-24 58 45 43-57 28 4 62-60-15-39 48-36-50-61 12 8-61-55-31 48-40-20-59 60 14z" fill="url(#warp)" opacity=".95"/>
+  <circle cx="82" cy="132" r="62" fill="#17131e"/>
+  <text x="82" y="124" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-weight="900" font-size="30">AWK</text>
+  <text x="82" y="154" text-anchor="middle" fill="#c9b7d8" font-family="monospace" font-size="13">BUT HARDER</text>
+</g>
+<text x="575" y="384" fill="#f2f4f8" font-family="Arial,sans-serif" font-weight="800" font-size="34">SOLVE IT.</text>
+<text x="575" y="426" fill="#f2f4f8" font-family="Arial,sans-serif" font-weight="800" font-size="34">THEN OVERENGINEER IT.</text>
+<text x="578" y="466" fill="#a99db4" font-family="monospace" font-size="16">TEST • BENCHMARK • HARDEN • REPEAT</text>
+</svg>

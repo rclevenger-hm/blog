@@ -8,6 +8,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
     || a.data.title.localeCompare(b.data.title));
 
 const imageById = {
+  'i-overengineered-a-hiring-challenge': `${base}article-warp-challenge.svg`,
   'the-tech-job-search-changed': `${base}article-job-search.svg`,
   'google-antigravity-arcade-what-i-learned': `${base}article-antigravity.svg`,
   'leetcode-for-sre-and-devops-engineers': `${base}article-leetcode.svg`,
