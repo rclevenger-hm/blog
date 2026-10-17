@@ -56,6 +56,12 @@ jobs:
       - name: Validate built page metadata
         run: node scripts/check-built-metadata.mjs
 
+      - name: Install browser for navigation checks
+        run: npx playwright install --with-deps chromium
+
+      - name: Validate responsive keyboard navigation
+        run: npm run test:browser
+
       - name: Configure Pages
         if: github.event_name == 'push'
         uses: actions/configure-pages@v5
