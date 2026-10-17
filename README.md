@@ -15,6 +15,26 @@ npm run dev
 npm run build
 ```
 
+## Navigation regression checks
+
+The primary links stay visible and wrap onto another row on narrow screens,
+including when JavaScript is disabled. On phones the header scrolls with the
+page so it does not cover the article while reading.
+
+```bash
+npx playwright install chromium
+npm run build
+npm run test:browser
+```
+
+The browser suite checks the built site at phone, tablet, and desktop widths,
+including keyboard focus, current-page announcements, resizing, and browser
+Back/Forward navigation. It starts its own loopback server and blocks external
+requests. Set `CHROMIUM_PATH` to use an already-installed Chromium executable.
+The Pages build runs these checks before deployment.
+Each CI run also saves phone, desktop, and keyboard-focus screenshots as a
+`navigation-screenshots` artifact for visual review.
+
 ## Publish an article
 
 Create a Markdown file under `src/content/blog/`:

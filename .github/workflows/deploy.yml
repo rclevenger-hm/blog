@@ -60,7 +60,18 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Validate responsive keyboard navigation
+        env:
+          NAVIGATION_SCREENSHOTS: artifacts/navigation
         run: npm run test:browser
+
+      - name: Upload navigation screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: navigation-screenshots
+          path: artifacts/navigation
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Configure Pages
         if: github.event_name == 'push'

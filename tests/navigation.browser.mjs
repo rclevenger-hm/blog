@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { after, before, test } from 'node:test';
 import { createServer } from 'node:http';
-import { readFile, stat } from 'node:fs/promises';
+import { mkdir, readFile, stat } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
@@ -83,6 +83,12 @@ async function checkNavigation(page, path) {
   assert.equal(await page.locator('.header-inner').evaluate(element => element.scrollWidth <= element.clientWidth + 1), true, 'header has no horizontal overflow');
 }
 
+async function captureHeader(page, name) {
+  if (!process.env.NAVIGATION_SCREENSHOTS) return;
+  await mkdir(process.env.NAVIGATION_SCREENSHOTS, { recursive: true });
+  await page.screenshot({ path: resolve(process.env.NAVIGATION_SCREENSHOTS, `${name}.png`) });
+}
+
 for (const width of [320, 375, 760]) {
   for (const path of routes) {
     test(`primary navigation is reachable on ${path} at ${width}px`, async t => {
@@ -90,6 +96,7 @@ for (const width of [320, 375, 760]) {
       const response = await page.goto(origin + path);
       assert.equal(response.status(), 200);
       await checkNavigation(page, path);
+      if (path === '/blog/') await captureHeader(page, `home-${width}`);
     });
   }
 }
@@ -100,6 +107,7 @@ test('navigation survives breakpoint changes without a stale hidden state', asyn
   for (const width of [761, 820, 1050, 1051, 1280, 760, 320, 1280]) {
     await page.setViewportSize({ width, height: 812 });
     await checkNavigation(page, '/blog/');
+    if (width === 1280) await captureHeader(page, 'home-desktop');
   }
 });
 
@@ -119,6 +127,7 @@ test('keyboard focus reaches every link and remains visible in both themes', asy
         return style.outlineStyle === 'solid' && parseFloat(style.outlineWidth) >= 2;
       }), true, `${label} has a visible focus ring in ${theme} mode`);
     }
+    await captureHeader(page, `keyboard-${theme}`);
     await page.keyboard.press('Tab');
     assert.equal(await page.getByRole('button', { name: 'Toggle dark mode' }).evaluate(element => element === document.activeElement), true);
   }
