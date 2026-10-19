@@ -58,7 +58,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.u
         <nav class="nav" aria-label="Main navigation">
           {nav.map(([label, href]) => {
             const active = href === base ? path === base : path.startsWith(href);
-            return <a class:list={{active}} href={href}>{label}</a>;
+            return <a class:list={{active}} href={href} aria-current={active ? 'page' : undefined}>{label}</a>;
           })}
         </nav>
         <div class="header-actions">
