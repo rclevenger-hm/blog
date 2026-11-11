@@ -15,6 +15,16 @@ npm run dev
 npm run build
 ```
 
+## Metadata validation
+
+`npm test` exercises the built-metadata validator with isolated fixtures. After
+`npm run build`, run `node scripts/check-built-metadata.mjs` to check the actual
+output. Every first-party page must declare a canonical URL matching its generated
+route, with the same Open Graph URL. The checks reject wrong routes, duplicate
+canonicals, query/fragment suffixes, and missing required metadata. Bundled games
+retain their upstream metadata and are excluded. CI runs both fixture tests and
+actual-output validation before deployment.
+
 ## Navigation regression checks
 
 The primary links stay visible and wrap onto another row on narrow screens,
