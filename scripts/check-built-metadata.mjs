@@ -67,6 +67,14 @@ for (const file of pages) {
   }
 
   if (canonical && !canonical.startsWith(sitePrefix)) failures.push(`${relative}: canonical is outside ${sitePrefix}`);
+  // Astro's directory output maps index.html to its containing route. Compare
+  // against that route, not just the site prefix: a unique but wrong canonical
+  // can otherwise silently remove the actual page from search results.
+  const route = relative === 'index.html' ? '' : relative.replace(/\/index\.html$/, '/');
+  const expectedCanonical = new URL(route.split('/').map(encodeURIComponent).join('/'), sitePrefix).href;
+  if (canonical && canonical !== expectedCanonical) {
+    failures.push(`${relative}: canonical must match generated route ${expectedCanonical}`);
+  }
   if (ogUrl && ogUrl !== canonical) failures.push(`${relative}: og:url does not match canonical`);
   if (canonical) {
     const previous = canonicals.get(canonical);
