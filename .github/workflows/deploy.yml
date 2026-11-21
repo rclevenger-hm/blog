@@ -34,6 +34,11 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Validate built RSS feed
+        run: |
+          python3 tests/test_built_rss.py
+          python3 scripts/check-built-rss.py
+
       - name: Build playable Antigravity Arcade demo
         env:
           GOOGLE_DEVREL_COMMIT: 68476ce6028020bac0fbbe60d9626de6a1c7e60f

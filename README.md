@@ -51,6 +51,10 @@ readTime: "6 min read"
 ---
 ```
 
+The CI build verifies that `rss.xml` contains every published article once, with
+absolute article links and newest-first publication dates. Check the built feed
+locally with `python3 scripts/check-built-rss.py` after `npm run build`.
+
 Push to `main` and GitHub Actions will build and deploy the site.
 
 
